@@ -19,7 +19,9 @@ Auth:
   AccessSecret: ad879037-c7a4-4063-9236-6bfc35d54b7d
   AccessExpire: 86400
 
+#Rpc客户端配置
 UserRpc:
+  #etcd相关配置
   Etcd:
     Hosts:
       - 127.0.0.1:2379

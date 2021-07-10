@@ -23,7 +23,7 @@ func main() {
 	flag.Parse()
 
 	var c config.Config
-	conf.MustLoad(*configFile, &c)
+	conf.MustLoad(*configFile, &c) //读取配置文件信息
 	ctx := svc.NewServiceContext(c)
 	srv := server.NewUserServer(ctx)
 

@@ -1,11 +1,20 @@
 Name: user.rpc
+#rpc监听地址和端口，如：127.0.0.1:8888
 ListenOn: 127.0.0.1:8080
+
+#etcd相关配置
 Etcd:
+  #etcd host数组
   Hosts:
-  - 127.0.0.1:2379
+  - 127.0.0.1:2379 
+  # rpc注册key
   Key: user.rpc
+
+#mysql链接地址，满足 $user:$password@tcp($ip:$port)/$db?$queries 格式即可  
 Mysql:
-  DataSource: ugozero:@tcp(127.0.0.1:3306)/gozero?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+  DataSource: root:123456@tcp(127.0.0.1:3306)/gozero?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+
+#缓存相关设置  
 CacheRedis:
   - Host: 127.0.0.1:6379
     Pass:

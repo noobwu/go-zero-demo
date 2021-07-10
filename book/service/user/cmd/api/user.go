@@ -21,7 +21,7 @@ func main() {
 	flag.Parse()
 
 	var c config.Config
-	conf.MustLoad(*configFile, &c)
+	conf.MustLoad(*configFile, &c) //读取配置信息
 
 	ctx := svc.NewServiceContext(c)
 	server := rest.MustNewServer(c.RestConf)
