@@ -8,6 +8,10 @@ type Response {
 	Message string `json:"message"`
 }
 
+@server(
+    jwt: Auth //开启jwt鉴权
+)
+
 service greet-api {
 	@handler GreetHandler
 	get /from/:name(Request) returns (Response);

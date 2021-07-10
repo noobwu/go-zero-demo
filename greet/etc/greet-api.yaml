@@ -15,3 +15,14 @@ MaxBytes: 1048576
 Timeout: 3000     
 #cpu降载阈值，默认900，可允许设置范围0到1000
 CpuThreshold: 900 
+
+# redis缓存
+CacheRedis:
+  - Host: 127.0.0.1:6379
+    Pass:
+    Type: node
+
+#jwt鉴权配置    
+Auth:
+  AccessSecret: ad879037-c7a4-4063-9236-6bfc35d54b7d
+  AccessExpire: 86400
