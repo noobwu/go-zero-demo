@@ -18,11 +18,13 @@ CpuThreshold: 900
 Mysql:
   DataSource: root:123456@tcp(127.0.0.1:3306)/gozero?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
 
+#缓存相关设置
 CacheRedis:
   - Host: 127.0.0.1:6379
     Pass:
     Type: node
 
+#认证相关设置
 Auth:
   AccessSecret: ad879037-c7a4-4063-9236-6bfc35d54b7d
   AccessExpire: 86400

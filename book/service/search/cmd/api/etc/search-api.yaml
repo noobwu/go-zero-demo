@@ -1,9 +1,24 @@
 Name: search-api
+#http监听ip，默认0.0.0.0
 Host: 0.0.0.0
-Port: 8889
+#http监听端口,必填
+Port: 8089
+#是否打印详细http请求日志
+Verbose: true
+#http同时可接受最大请求数（限流数），默认10000
+MaxConns: 10
+#http可接受请求的最大ContentLength，默认1048576，被设置值不能必须在0到8388608之间
+MaxBytes: 1048576
+#超时时长控制，单位：毫秒，默认3000
+Timeout: 3000     
+#cpu降载阈值，默认900，可允许设置范围0到1000
+CpuThreshold: 900 
+
+#认证相关设置
 Auth:
   AccessSecret: ad879037-c7a4-4063-9236-6bfc35d54b7d
   AccessExpire: 86400
+
 UserRpc:
   Etcd:
     Hosts:
