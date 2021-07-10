@@ -1,3 +1,5 @@
+//api描述文件
+
 type Request {
 	Name string `path:"name,options=you|me"`
 }

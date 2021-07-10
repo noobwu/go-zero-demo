@@ -1,3 +1,5 @@
+// main函数入口
+
 package main
 
 import (
