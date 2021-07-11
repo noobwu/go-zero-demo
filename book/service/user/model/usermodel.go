@@ -71,6 +71,9 @@ func (m *defaultUserModel) FindOne(id int64) (*User, error) {
 		query := fmt.Sprintf("select %s from %s where `id` = ? limit 1", userRows, m.table)
 		return conn.QueryRow(v, query, id)
 	})
+
+   // 错误处理，需要判断是否返回的是sqlc.ErrNotFound，如果是，我们用本package定义的ErrNotFound返回
+   // 避免使用者感知到有没有使用缓存，同时也是对底层依赖的隔离
 	switch err {
 	case nil:
 		return &resp, nil
