@@ -65,15 +65,17 @@ func (m *defaultUserModel) Insert(data User) (sql.Result, error) {
 }
 
 func (m *defaultUserModel) FindOne(id int64) (*User, error) {
+	//生成基于索引的key
 	userIdKey := fmt.Sprintf("%s%v", cacheUserIdPrefix, id)
 	var resp User
+	// 基于索引的DB查询方法
 	err := m.QueryRow(&resp, userIdKey, func(conn sqlx.SqlConn, v interface{}) error {
 		query := fmt.Sprintf("select %s from %s where `id` = ? limit 1", userRows, m.table)
 		return conn.QueryRow(v, query, id)
 	})
 
-   // 错误处理，需要判断是否返回的是sqlc.ErrNotFound，如果是，我们用本package定义的ErrNotFound返回
-   // 避免使用者感知到有没有使用缓存，同时也是对底层依赖的隔离
+	// 错误处理，需要判断是否返回的是sqlc.ErrNotFound，如果是，我们用本package定义的ErrNotFound返回
+	// 避免使用者感知到有没有使用缓存，同时也是对底层依赖的隔离
 	switch err {
 	case nil:
 		return &resp, nil
@@ -87,6 +89,8 @@ func (m *defaultUserModel) FindOne(id int64) (*User, error) {
 func (m *defaultUserModel) FindOneByNumber(number string) (*User, error) {
 	userNumberKey := fmt.Sprintf("%s%v", cacheUserNumberPrefix, number)
 	var resp User
+
+	// 基于主键的DB查询方法
 	err := m.QueryRowIndex(&resp, userNumberKey, m.formatPrimary, func(conn sqlx.SqlConn, v interface{}) (i interface{}, e error) {
 		query := fmt.Sprintf("select %s from %s where `number` = ? limit 1", userRows, m.table)
 		if err := conn.QueryRow(&resp, query, number); err != nil {
@@ -94,6 +98,9 @@ func (m *defaultUserModel) FindOneByNumber(number string) (*User, error) {
 		}
 		return resp.Id, nil
 	}, m.queryPrimary)
+
+	// 错误处理，需要判断是否返回的是sqlc.ErrNotFound，如果是，我们用本package定义的ErrNotFound返回
+	// 避免使用者感知到有没有使用缓存，同时也是对底层依赖的隔离
 	switch err {
 	case nil:
 		return &resp, nil
