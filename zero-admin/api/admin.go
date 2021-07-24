@@ -3,9 +3,10 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/tal-tech/go-zero/rest/httpx"
 	"go-zero-admin/api/internal/common/errorx"
 	"net/http"
+
+	"github.com/tal-tech/go-zero/rest/httpx"
 
 	"go-zero-admin/api/internal/config"
 	"go-zero-admin/api/internal/handler"
@@ -15,7 +16,8 @@ import (
 	"github.com/tal-tech/go-zero/rest"
 )
 
-var configFile = flag.String("f", "api/etc/admin-api.yaml", "the config file")
+//var configFile = flag.String("f", "api/etc/admin-api.yaml", "the config file")
+var configFile = flag.String("f", "./etc/admin-api.yaml", "the config file")
 
 func main() {
 	flag.Parse()

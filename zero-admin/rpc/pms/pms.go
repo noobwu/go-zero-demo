@@ -17,7 +17,8 @@ import (
 	"google.golang.org/grpc"
 )
 
-var configFile = flag.String("f", "rpc/pms/etc/pms.yaml", "the config file")
+//var configFile = flag.String("f", "rpc/pms/etc/pms.yaml", "the config file")
+var configFile = flag.String("f", "./etc/pms.yaml", "the config file")
 
 func main() {
 	flag.Parse()
