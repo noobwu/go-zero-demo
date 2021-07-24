@@ -4,7 +4,7 @@ https://github.com/noobwu/mall-learning/blob/master/document/sql/mall.sql
 
 
 复制sql文件夹下的所有.sql文件到go-zero-all.sql
-copy *.sql go-zero-all
+copy *.sql gozero-all
 
 重命名
-ren go-zero-all go-zero-all.sql
+ren gozero-all gozero-all.sql
