@@ -1,1 +1,10 @@
-声明：数据库表来源网上https://gitee.com/macrozheng/mall这个项目,如果有侵权请告知，本人会立即删除
+声明：数据库表来源网上https://github.com/macrozheng/mall这个项目,如果有侵权请告知，本人会立即删除
+
+https://github.com/noobwu/mall-learning/blob/master/document/sql/mall.sql
+
+
+复制sql文件夹下的所有.sql文件到go-zero-all.sql
+copy *.sql go-zero-all
+
+重命名
+ren go-zero-all go-zero-all.sql
