@@ -3,12 +3,13 @@ package middleware
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/tal-tech/go-zero/core/logx"
-	"github.com/tal-tech/go-zero/core/stores/redis"
-	"github.com/tal-tech/go-zero/rest/httpx"
 	"go-zero-admin/api/internal/common/errorx"
 	"net/http"
 	"strings"
+
+	"github.com/tal-tech/go-zero/core/logx"
+	"github.com/tal-tech/go-zero/core/stores/redis"
+	"github.com/tal-tech/go-zero/rest/httpx"
 )
 
 type CheckUrlMiddleware struct {
@@ -38,15 +39,17 @@ func (m *CheckUrlMiddleware) Handle(next http.HandlerFunc) http.HandlerFunc {
 			return
 		}
 
-		if len(strings.TrimSpace(urls)) == 0 {
-			logx.Errorf("用户userId: %s,还没有登录", userId)
-			httpx.Error(w, errorx.NewDefaultError(fmt.Sprintf("用户userId: %s,还没有登录,请先登录", userId)))
-			return
-		}
+		/*
+			if len(strings.TrimSpace(urls)) == 0 {
+				logx.Errorf("用户userId: %s,还没有登录", userId)
+				httpx.Error(w, errorx.NewDefaultError(fmt.Sprintf("用户userId: %s,还没有登录,请先登录", userId)))
+				return
+			}
+		*/
 
 		backUrls := strings.Split(urls, ",")
 
-		b := false
+		b := true
 		for _, url := range backUrls {
 			if url == r.RequestURI {
 				b = true
