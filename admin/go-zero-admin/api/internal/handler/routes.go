@@ -55,8 +55,8 @@ import (
 func RegisterHandlers(engine *rest.Server, serverCtx *svc.ServiceContext) {
 	engine.AddRoutes(
 		rest.WithMiddlewares(
-			[]rest.Middleware{serverCtx.CheckUrl},
-			[]rest.Route{
+			[]rest.Middleware{serverCtx.CheckUrl}, //中间件
+			[]rest.Route{ //路由相关配置
 				{
 					Method:  http.MethodGet,
 					Path:    "/api/sys/user/currentUser",
@@ -99,7 +99,7 @@ func RegisterHandlers(engine *rest.Server, serverCtx *svc.ServiceContext) {
 				},
 			}...,
 		),
-		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
+		rest.WithJwt(serverCtx.Config.Auth.AccessSecret), //启用jwt鉴权
 	)
 
 	engine.AddRoutes(
@@ -107,7 +107,7 @@ func RegisterHandlers(engine *rest.Server, serverCtx *svc.ServiceContext) {
 			{
 				Method:  http.MethodPost,
 				Path:    "/api/sys/user/login",
-				Handler: sysuser.UserLoginHandler(serverCtx),
+				Handler: sysuser.UserLoginHandler(serverCtx), //登录事件处理
 			},
 		},
 	)

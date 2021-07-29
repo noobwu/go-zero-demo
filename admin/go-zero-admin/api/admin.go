@@ -23,13 +23,13 @@ func main() {
 	flag.Parse()
 
 	var c config.Config
-	conf.MustLoad(*configFile, &c)
+	conf.MustLoad(*configFile, &c) //加载配置文件
 
-	ctx := svc.NewServiceContext(c)
-	server := rest.MustNewServer(c.RestConf)
-	defer server.Stop()
+	ctx := svc.NewServiceContext(c)          //logic所依赖的资源池
+	server := rest.MustNewServer(c.RestConf) //创建Rest服务
+	defer server.Stop()                      //停止服务
 
-	handler.RegisterHandlers(server, ctx)
+	handler.RegisterHandlers(server, ctx) //注册Handler
 
 	// 自定义错误
 	httpx.SetErrorHandler(func(err error) (int, interface{}) {
@@ -42,5 +42,5 @@ func main() {
 	})
 
 	fmt.Printf("Starting server at %s:%d...\n", c.Host, c.Port)
-	server.Start()
+	server.Start() //启动服务
 }
