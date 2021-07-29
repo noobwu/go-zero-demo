@@ -11,7 +11,8 @@ Mysql:
 Log:
   Mode: file
   Path: logs/pms
-Prometheus:
-  Host: 127.0.0.1
-  Port: 8182
-  Path: /metrics
+  
+# Prometheus:
+#   Host: 127.0.0.1
+#   Port: 8182
+#   Path: /metrics
