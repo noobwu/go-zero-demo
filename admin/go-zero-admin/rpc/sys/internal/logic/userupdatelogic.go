@@ -24,7 +24,13 @@ func NewUserUpdateLogic(ctx context.Context, svcCtx *svc.ServiceContext) *UserUp
 		Logger: logx.WithContext(ctx),
 	}
 }
-
+/**
+ * @Description: 更新系统用户信息
+ * @receiver l
+ * @param in
+ * @return *sys.UserUpdateResp
+ * @return error
+ */
 func (l *UserUpdateLogic) UserUpdate(in *sys.UserUpdateReq) (*sys.UserUpdateResp, error) {
 
 	_ = l.svcCtx.UserModel.Update(sysmodel.SysUser{

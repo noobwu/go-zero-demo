@@ -13,18 +13,29 @@ import (
 )
 
 var (
+	/**
+     * @Description: 系统用户所有字段
+     * @param &SysUser{}
+     */
 	sysUserFieldNames          = builderx.FieldNames(&SysUser{})
 	sysUserRows                = strings.Join(sysUserFieldNames, ",")
 	sysUserRowsExpectAutoSet   = strings.Join(stringx.Remove(sysUserFieldNames, "id", "create_time", "update_time"), ",")
 	sysUserRowsWithPlaceHolder = strings.Join(stringx.Remove(sysUserFieldNames, "id", "create_by", "create_time", "update_time"), "=?,") + "=?"
+	//更新的字段
+	updateSysUserRowsWithPlaceHolder = strings.Join(stringx.Remove(sysUserFieldNames, "id", "create_by", "create_time", "update_time","password",""), "=?,") + "=?"
 )
 
 type (
+	/**
+     * @Description:系统用户数据库相关操作
+     */
 	SysUserModel struct {
-		conn  sqlx.SqlConn
-		table string
+		conn  sqlx.SqlConn //数据库链接
+		table string //表名
 	}
-
+	/**
+     * @Description: 系统用户
+     */
 	SysUser struct {
 		Id             int64     `db:"id"`               // 编号
 		Name           string    `db:"name"`             // 用户名
@@ -44,7 +55,9 @@ type (
 		DelFlag        int64     `db:"del_flag"`         // 是否删除  -1：已删除  0：正常
 
 	}
-
+    /**
+     * @Description:
+     */
 	SysUserList struct {
 		Id             int64     `db:"id"`               // 编号
 		Name           string    `db:"name"`             // 用户名
@@ -68,14 +81,24 @@ type (
 		RoleId         int64     `db:"role_id"`
 	}
 )
-
+/**
+ * @Description:实例化系统用户数据库相关操作
+ * @param conn
+ * @return *SysUserModel
+ */
 func NewSysUserModel(conn sqlx.SqlConn) *SysUserModel {
 	return &SysUserModel{
 		conn:  conn,
 		table: "sys_user",
 	}
 }
-
+/**
+ * @Description: 新增系统用户
+ * @receiver m
+ * @param data
+ * @return sql.Result
+ * @return error
+ */
 func (m *SysUserModel) Insert(data SysUser) (sql.Result, error) {
 	query := fmt.Sprintf("insert into %s (%s) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", m.table, sysUserRowsExpectAutoSet)
 	ret, err := m.conn.Exec(query, data.Name, data.NickName, data.Avatar, data.Password, data.Salt, data.Email, data.Mobile, data.Status, data.DeptId, data.JobId, data.CreateBy, data.LastUpdateBy, data.LastUpdateTime, data.DelFlag)
@@ -135,19 +158,35 @@ func (m *SysUserModel) FindOneByName(name string) (*SysUser, error) {
 	switch err {
 	case nil:
 		return &resp, nil
-	case sqlc.ErrNotFound:
+	case sqlc.ErrNotFound:/**
+     * @Description:
+     */
 		return nil, ErrNotFound
 	default:
 		return nil, err
 	}
 }
-
+/**
+ * @Description: 更新用户信息
+ * @receiver m
+ * @param data SysUser “用户信息”
+ * @return error
+ */
 func (m *SysUserModel) Update(data SysUser) error {
-	query := fmt.Sprintf("update %s set %s where id = ?", m.table, sysUserRowsWithPlaceHolder)
-	_, err := m.conn.Exec(query, data.Name, data.NickName, data.Avatar, data.Password, data.Salt, data.Email, data.Mobile, data.Status, data.DeptId, data.JobId, data.LastUpdateBy, data.LastUpdateTime, data.DelFlag, data.Id)
+	/*
+		query := fmt.Sprintf("update %s set %s where id = ?", m.table, sysUserRowsWithPlaceHolder)
+		_, err := m.conn.Exec(query, data.Name, data.NickName, data.Avatar, data.Password, data.Salt, data.Email, data.Mobile, data.Status, data.DeptId, data.JobId, data.LastUpdateBy, data.LastUpdateTime, data.DelFlag, data.Id)
+	*/
+	query := fmt.Sprintf("update %s set %s where id = ?", m.table, updateSysUserRowsWithPlaceHolder)
+	_, err := m.conn.Exec(query, data.Name, data.NickName, data.Avatar, data.Email, data.Mobile, data.Status, data.DeptId, data.JobId, data.LastUpdateBy, data.LastUpdateTime, data.DelFlag, data.Id)
 	return err
 }
-
+/**
+ * @Description: 删除用户
+ * @receiver m
+ * @param id  int64  "用户Id"
+ * @return error
+ */
 func (m *SysUserModel) Delete(id int64) error {
 	query := fmt.Sprintf("delete from %s where id = ?", m.table)
 	_, err := m.conn.Exec(query, id)

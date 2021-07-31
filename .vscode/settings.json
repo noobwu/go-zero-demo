@@ -1,0 +1,6 @@
+{
+    "files.exclude": {
+        "**/.umi": true,
+        "**/.umi-production": true
+    }
+}
