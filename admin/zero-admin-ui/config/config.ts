@@ -43,6 +43,10 @@ export default defineConfig({
   manifest: {
     basePath: '/',
   },
-  exportStatic: {},
+  nodeModulesTransform: {
+    type: 'none',
+  },
   mfsu: {},
+  webpack5: {},
+  exportStatic: {},
 });
