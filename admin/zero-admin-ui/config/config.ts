@@ -13,10 +13,13 @@ export default defineConfig({
     hmr: true,
   },
   layout: {
-    name: 'Ant Design Pro',
-    locale: false,
+    // https://umijs.org/zh-CN/plugins/plugin-layout
+    locale: true,
+    siderWidth: 208,
     ...defaultSettings,
   },
+
+  // https://umijs.org/zh-CN/plugins/plugin-locale
   locale: {
     // default zh-CN
     default: 'zh-CN',
@@ -25,7 +28,7 @@ export default defineConfig({
     baseNavigator: true,
   },
   dynamicImport: {
-    loading: '@/components/PageLoading/index',
+    loading: '@ant-design/pro-layout/es/PageLoading',
   },
   targets: {
     ie: 11,
@@ -36,6 +39,8 @@ export default defineConfig({
   theme: {
     'primary-color': defaultSettings.primaryColor,
   },
+  // esbuild is father build tools
+  // https://umijs.org/plugins/plugin-esbuild
   esbuild: {},
   title: false,
   ignoreMomentLocale: true,
@@ -43,10 +48,16 @@ export default defineConfig({
   manifest: {
     basePath: '/',
   },
+   // Fast Refresh 热更新
+   //https://umijs.org/zh-CN/docs/fast-refresh
+  fastRefresh: {},
+  //https://umijs.org/guide/boost-compile-speed
   nodeModulesTransform: {
     type: 'none',
   },
+  //https://umijs.org/zh-CN/docs/mfsu
   mfsu: {},
+  //https://webpack.docschina.org/blog/2020-10-10-webpack-5-release/
   webpack5: {},
   exportStatic: {},
 });
