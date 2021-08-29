@@ -81,6 +81,15 @@ const vueConfig = {
         return args
       })
     }
+
+    /** 
+    if (process.env.analyze) {
+      config
+        .plugin('webpack-bundle-analyzer')
+        .use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin)
+    }
+    */
+
   },
 
   css: {
