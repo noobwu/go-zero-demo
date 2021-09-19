@@ -5,25 +5,27 @@
  * For details, please see
  * https://pro.ant.design/docs/deploy
  */
+/**
+ const serveUrlMap = {
+  dev: 'https://dev.pro.ant.design/',
+  pre: 'https://pre.pro.ant.design/',
+  test: 'https://test.pro.ant.design/',
+  idc: 'https://idc.pro.ant.design/',
+};
+*/
+const serveUrlMap = {
+  dev: 'http://127.0.0.1:8888',
+  pre: 'https://pre.pro.ant.design/',
+  test: 'https://test.pro.ant.design/',
+  idc: 'https://idc.pro.ant.design/',
+};
+
+const { SERVE_ENV = 'dev' } = process.env;
+
 export default {
-  dev: {
+  proxy: {
     '/api/': {
-      target: 'http://127.0.0.1:8888',
-      changeOrigin: true,
-      pathRewrite: { '^': '' },
-    },
-  },
-  test: {
-    '/api/': {
-      //target: 'https://preview.pro.ant.design',
-      target: 'http://127.0.0.1:8888',
-      changeOrigin: true,
-      pathRewrite: { '^': '' },
-    },
-  },
-  pre: {
-    '/api/': {
-      target: 'http://127.0.0.1:8888',
+      target: serveUrlMap[SERVE_ENV],
       changeOrigin: true,
       pathRewrite: { '^': '' },
     },

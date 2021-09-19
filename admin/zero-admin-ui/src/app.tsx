@@ -29,9 +29,12 @@ const IconMap = {
   DollarCircleOutlined: <DollarCircleOutlined />,
   AlertOutlined: <AlertOutlined />,
 };
-
+/**
+ * 全局初始化信息
+ * @returns
+ */
 export async function getInitialState(): Promise<{
-  settings?: LayoutSettings;
+  settings?: LayoutSettings; //
   currentUser?: API.CurrentUser;
   fetchUserInfo?: () => Promise<API.CurrentUser | undefined>;
 }> {
