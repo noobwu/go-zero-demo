@@ -13,19 +13,19 @@
   idc: 'https://idc.pro.ant.design/',
 };
 */
-const serveUrlMap = {
+const apiMap = {
   dev: 'http://127.0.0.1:8888',
   pre: 'https://pre.pro.ant.design/',
   test: 'https://test.pro.ant.design/',
   idc: 'https://idc.pro.ant.design/',
 };
 
-const { SERVE_ENV = 'dev' } = process.env;
+const { REACT_APP_ENV = 'dev' } = process.env;
 
 export default {
   proxy: {
     '/api/': {
-      target:serveUrlMap[SERVE_ENV],
+      target:apiMap[REACT_APP_ENV],
       changeOrigin: true,
       pathRewrite: { '^': '' },
     },

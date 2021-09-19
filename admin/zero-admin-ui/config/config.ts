@@ -4,8 +4,6 @@ import defaultSettings from './defaultSettings';
 import proxy from './proxy';
 import routes from './routes';
 
-const { REACT_APP_ENV } = process.env;
-
 export default defineConfig({
   hash: true,
   antd: {},
@@ -14,7 +12,7 @@ export default defineConfig({
   },
   layout: {
     // https://umijs.org/zh-CN/plugins/plugin-layout
-    locale: true,
+    locale: false,
     siderWidth: 208,
     ...defaultSettings,
   },
@@ -60,4 +58,5 @@ export default defineConfig({
   //https://webpack.docschina.org/blog/2020-10-10-webpack-5-release/
   webpack5: {},
   exportStatic: {},
+
 });
