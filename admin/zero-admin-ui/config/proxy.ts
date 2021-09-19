@@ -25,9 +25,9 @@ const { SERVE_ENV = 'dev' } = process.env;
 export default {
   proxy: {
     '/api/': {
-      target: serveUrlMap[SERVE_ENV],
+      target:serveUrlMap[SERVE_ENV],
       changeOrigin: true,
       pathRewrite: { '^': '' },
     },
-  },
+  }
 };
