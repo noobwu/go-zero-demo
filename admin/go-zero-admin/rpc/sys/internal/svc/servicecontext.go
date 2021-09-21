@@ -21,7 +21,12 @@ type ServiceContext struct {
 	ConfigModel   *sysmodel.SysConfigModel
 	JobModel      sysmodel.SysJobModel
 }
-
+//
+//  NewServiceContext
+//  @Description:
+//  @param c
+//  @return *ServiceContext
+//
 func NewServiceContext(c config.Config) *ServiceContext {
 
 	sqlConn := sqlx.NewMysql(c.Mysql.Datasource)

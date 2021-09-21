@@ -646,7 +646,6 @@ message JobDeleteResp {
 //job end---------------------
 
 service Sys {
-
   rpc Login(LoginReq) returns(loginResp);
   rpc UserInfo(InfoReq) returns(InfoResp);
   rpc UserAdd(UserAddReq) returns(UserAddResp);
