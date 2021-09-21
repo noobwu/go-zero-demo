@@ -10,7 +10,12 @@ import (
 	"github.com/tal-tech/go-zero/rest/httpx"
 )
 
-//登录事件处理
+//
+//  UserLoginHandler
+//  @Description:登录事件处理
+//  @param ctx
+//  @return http.HandlerFunc
+//
 func UserLoginHandler(ctx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var req types.LoginReq

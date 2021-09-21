@@ -13,15 +13,29 @@ import (
 	"github.com/tal-tech/go-zero/core/stores/redis"
 	"github.com/tal-tech/go-zero/rest/httpx"
 )
-
+//
+//  CheckUrlMiddleware
+//  @Description:
+//
 type CheckUrlMiddleware struct {
 	Redis *redis.Redis
 }
-
+//
+//  NewCheckUrlMiddleware
+//  @Description:
+//  @param Redis
+//  @return *CheckUrlMiddleware
+//
 func NewCheckUrlMiddleware(Redis *redis.Redis) *CheckUrlMiddleware {
 	return &CheckUrlMiddleware{Redis: Redis}
 }
-
+//
+//  Handle
+//  @Description:
+//  @receiver m
+//  @param next
+//  @return http.HandlerFunc
+//
 func (m *CheckUrlMiddleware) Handle(next http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 
