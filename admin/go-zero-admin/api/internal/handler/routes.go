@@ -51,7 +51,12 @@ import (
 
 	"github.com/tal-tech/go-zero/rest"
 )
-
+//
+//  RegisterHandlers
+//  @Description:
+//  @param engine
+//  @param serverCtx
+//
 func RegisterHandlers(engine *rest.Server, serverCtx *svc.ServiceContext) {
 	engine.AddRoutes(
 		rest.WithMiddlewares(
