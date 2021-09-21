@@ -30,7 +30,7 @@ func main() {
 	server := rest.MustNewServer(c.RestConf) //创建Rest服务
 	defer server.Stop()                      //停止服务
 
-	handler.RegisterHandlers(server, ctx) //注册Handler
+	handler.RegisterHandlers(server, ctx) //注册Handler及路由設置
 
 	// 自定义错误
 	httpx.SetErrorHandler(func(err error) (int, interface{}) {
