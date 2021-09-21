@@ -17,8 +17,9 @@ import (
 	"google.golang.org/grpc"
 )
 
-//var configFile = flag.String("f", "rpc/sms/etc/sms.yaml", "the config file")
-var configFile = flag.String("f", "./etc/sms.yaml", "the config file")
+var configFile = flag.String("f", "rpc/sms/etc/sms.yaml", "the config file")
+
+//var configFile = flag.String("f", "./etc/sms.yaml", "the config file")
 
 func main() {
 	flag.Parse()

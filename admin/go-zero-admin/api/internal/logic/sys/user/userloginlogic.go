@@ -54,7 +54,7 @@ func (l *UserLoginLogic) UserLogin(req types.LoginReq, ip string) (*types.LoginR
 		logx.WithContext(l.ctx).Errorf("用户名或密码不能为空,请求信息失败,参数:%s", reqStr)
 		return nil, errorx.NewDefaultError("用户名或密码不能为空")
 	}
-
+	//调用登录rpc服务
 	resp, err := l.svcCtx.Sys.Login(l.ctx, &sysclient.LoginReq{
 		UserName: req.UserName,
 		Password: req.Password,

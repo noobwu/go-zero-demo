@@ -24,6 +24,7 @@ func NewUserUpdateLogic(ctx context.Context, svcCtx *svc.ServiceContext) *UserUp
 		Logger: logx.WithContext(ctx),
 	}
 }
+
 /**
  * @Description: 更新系统用户信息
  * @receiver l

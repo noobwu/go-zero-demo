@@ -20,12 +20,28 @@ func NewSysServer(svcCtx *svc.ServiceContext) *SysServer {
 		svcCtx: svcCtx,
 	}
 }
-
+//
+//  Login
+//  @Description:
+//  @receiver s
+//  @param ctx
+//  @param in
+//  @return *sys.LoginResp
+//  @return error
+//
 func (s *SysServer) Login(ctx context.Context, in *sys.LoginReq) (*sys.LoginResp, error) {
 	l := logic.NewLoginLogic(ctx, s.svcCtx)
 	return l.Login(in)
 }
-
+//
+//  UserInfo
+//  @Description:
+//  @receiver s
+//  @param ctx
+//  @param in
+//  @return *sys.InfoResp
+//  @return error
+//
 func (s *SysServer) UserInfo(ctx context.Context, in *sys.InfoReq) (*sys.InfoResp, error) {
 	l := logic.NewUserInfoLogic(ctx, s.svcCtx)
 	return l.UserInfo(in)

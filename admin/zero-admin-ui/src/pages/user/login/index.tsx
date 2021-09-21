@@ -46,7 +46,7 @@ const Login: React.FC<{}> = () => {
     setSubmitting(true);
     try {
       // 登录
-      const msg = await fakeAccountLogin({ ...values, type });
+      const msg = await fakeAccountLogin({ ...values, type });//请求登录接口
       if (msg.status === 'ok') {
         localStorage.setItem("token", msg.token);
         message.success('登录成功！');
@@ -94,7 +94,7 @@ const Login: React.FC<{}> = () => {
               },
             }}
             onFinish={async (values) => {
-              handleSubmit(values);
+              handleSubmit(values);//提交表单且数据验证成功后回调事件，同 antd 4 Form 组件 API
             }}
           >
             <Tabs activeKey={type} onChange={setType}>
@@ -154,7 +154,7 @@ const Login: React.FC<{}> = () => {
                   }}
                   placeholder={intl.formatMessage({
                     id: 'pages.login.password.placeholder',
-                    defaultMessage: '密码: ant.design',
+                    defaultMessage: '密码: 123456',
                   })}
                   rules={[
                     {

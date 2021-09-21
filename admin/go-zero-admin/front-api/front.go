@@ -12,8 +12,9 @@ import (
 	"github.com/tal-tech/go-zero/rest"
 )
 
-//var configFile = flag.String("f", "front-api/etc/front-api.yaml", "the config file")
-var configFile = flag.String("f", "./etc/front-api.yaml", "the config file")
+var configFile = flag.String("f", "front-api/etc/front-api.yaml", "the config file")
+
+//var configFile = flag.String("f", "./etc/front-api.yaml", "the config file")
 
 func main() {
 	flag.Parse()

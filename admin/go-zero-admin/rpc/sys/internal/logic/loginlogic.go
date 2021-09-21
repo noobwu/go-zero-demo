@@ -18,7 +18,13 @@ type LoginLogic struct {
 	svcCtx *svc.ServiceContext
 	logx.Logger
 }
-
+//
+//  NewLoginLogic
+//  @Description:
+//  @param ctx
+//  @param svcCtx
+//  @return *LoginLogic
+//
 func NewLoginLogic(ctx context.Context, svcCtx *svc.ServiceContext) *LoginLogic {
 	return &LoginLogic{
 		ctx:    ctx,
@@ -26,7 +32,14 @@ func NewLoginLogic(ctx context.Context, svcCtx *svc.ServiceContext) *LoginLogic 
 		Logger: logx.WithContext(ctx),
 	}
 }
-
+//
+//  Login
+//  @Description:
+//  @receiver l
+//  @param in
+//  @return *sys.LoginResp
+//  @return error
+//
 //根据用户名和密码登录
 func (l *LoginLogic) Login(in *sys.LoginReq) (*sys.LoginResp, error) {
 	userInfo, err := l.svcCtx.UserModel.FindOneByName(in.UserName)
@@ -71,7 +84,17 @@ func (l *LoginLogic) Login(in *sys.LoginReq) (*sys.LoginResp, error) {
 	logx.WithContext(l.ctx).Infof("登录成功,参数:%s,响应:%s", reqStr, listStr)
 	return resp, nil
 }
-
+//
+//  getJwtToken
+//  @Description:
+//  @receiver l
+//  @param secretKey
+//  @param iat
+//  @param seconds
+//  @param userId
+//  @return string
+//  @return error
+//
 func (l *LoginLogic) getJwtToken(secretKey string, iat, seconds, userId int64) (string, error) {
 	claims := make(jwt.MapClaims)
 	claims["exp"] = iat + seconds
